@@ -1,4 +1,5 @@
 set autoindent
+set t_Co=256
 set mouse=a
 set guifont=Monaco:h12
 set bg=dark
