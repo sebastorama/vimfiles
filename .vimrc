@@ -43,8 +43,8 @@ map <C-W>w :w<CR> " Escreve no arquivo
 map cl ddO        " Change line
 
 map ,w :w!<cr>
-map ,, :tabp<cr>
-map .. :tabn<cr>
+map ,, :bprevious<cr>
+map .. :bNext<cr>
 map ,v :vsplit<cr>
 map ,h :split<cr>
 map ,q :q<cr>
