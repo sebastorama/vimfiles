@@ -1,7 +1,8 @@
 set autoindent
 set t_Co=256
 set mouse=a
-set guifont=Monaco:h12
+set guifont=Monaco:h10
+set noantialias
 set bg=dark
 set wildmode=longest,list  "para completação do TAB igual ao bash
 set backupdir=~/.vimbackups
