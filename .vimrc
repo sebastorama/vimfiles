@@ -1,15 +1,14 @@
 set autoindent
 set t_Co=256
 set mouse=a
-set guifont=Monaco:h10
-set noantialias
+set guifont=Monaco:h12
 set bg=dark
 set wildmode=longest,list  "para completação do TAB igual ao bash
 set backupdir=~/.vimbackups
 set directory=~/.vimbackups
 set autoread
 let g:ragtag_global_maps = 1 
-colorscheme railscasts
+colorscheme pyte
 syntax on
 
 " Display line numbers and information ruler
@@ -45,7 +44,7 @@ map cl ddO        " Change line
 
 map ,w :w!<cr>
 map ,, :bprevious<cr>
-map .. :bNext<cr>
+map .. :bnext<cr>
 map ,v :vsplit<cr>
 map ,h :split<cr>
 map ,q :q<cr>
