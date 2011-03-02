@@ -8,7 +8,7 @@ set backupdir=~/.vimbackups
 set directory=~/.vimbackups
 set autoread
 let g:ragtag_global_maps = 1 
-colorscheme pyte
+colorscheme railscasts 
 syntax on
 
 " Display line numbers and information ruler
@@ -51,6 +51,11 @@ map ,q :q<cr>
 map ,s /sad;lkfjasd;lfkjasd;lfkj<cr>
 map ,k <C-W>
 map ,/ <C-X><C-O>
+
+
+map <D-[> <ESC>:bprevious<cr>
+map <D-]> <ESC>:bnext<cr>
+map <D-Down> <ESC>:Bclose<cr>
 
 map ,n :NERDTreeToggle<cr>
 
