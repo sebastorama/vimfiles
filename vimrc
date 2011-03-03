@@ -1,19 +1,22 @@
 set autoindent
 set t_Co=256
 set mouse=a
-set guifont=Monaco:h12
+set guifont="Bitstream Vera Sans Mono 12"
+set linespace=2 
 set bg=dark
 set wildmode=longest,list  "para completação do TAB igual ao bash
 set backupdir=~/.vimbackups
 set directory=~/.vimbackups
 set autoread
 let g:ragtag_global_maps = 1 
-colorscheme railscasts 
+colorscheme Mustang
 syntax on
 
 " Display line numbers and information ruler
 set number
 set ruler
+
+set cursorline
 
 " Navigate through buffers without vim whinings on unsaved buffers
 set hidden
@@ -37,10 +40,18 @@ map <leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
+nmap <leader>C :set cursorcolumn!<CR>
+
+nmap <leader>a= <ESC>:Tabularize /=\zs<CR>
+vmap <leader>a= <ESC>:Tabularize /=<CR>
+nmap <leader>a: <ESC>:Tabularize /:\zs<CR>
+vmap <leader>a: <ESC>:Tabularize /:\zs<CR>
+
 " Teclas de atalho
 map <C-N> :bn<CR> " Próximo buffer
 map <C-W>w :w<CR> " Escreve no arquivo
 map cl ddO        " Change line
+
 
 map ,w :w!<cr>
 map ,, :bprevious<cr>
@@ -191,8 +202,6 @@ set statusline=
 set statusline+=%<\                           " cut at start
 set statusline+=%2*[%n%H%M%R%W]%*\            " buffer number, and flags
 set statusline+=%-40f\                        " relative path
-set statusline+=%#warningmsg#                 " Syntastic
-set statusline+=%{SyntasticStatuslineFlag()}  "   "
 set statusline+=%*                            "   "
 set statusline+=%=                            " seperate between right- and left-aligned
 set statusline+=%1*%y%*%*\                    " file type
