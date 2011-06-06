@@ -1,7 +1,7 @@
 set autoindent
 set t_Co=256
 set mouse=a
-set guifont="Bitstream Vera Sans Mono 12"
+set guifont="Monaco:h13"
 set linespace=2 
 set bg=dark
 set wildmode=longest,list  "para completação do TAB igual ao bash
@@ -9,7 +9,7 @@ set backupdir=~/.vimbackups
 set directory=~/.vimbackups
 set autoread
 let g:ragtag_global_maps = 1 
-colorscheme Mustang
+colorscheme ir_black
 syntax on
 
 " Display line numbers and information ruler
@@ -22,6 +22,7 @@ set cursorline
 set hidden
 
 set hlsearch
+set incsearch
 set smarttab
 
 " Stop annoying bells
