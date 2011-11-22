@@ -3,18 +3,21 @@ set t_Co=256
 set mouse=a
 set guifont="Monaco:h13"
 set linespace=2 
-set bg=dark
 set wildmode=longest,list  "para completação do TAB igual ao bash
 set backupdir=~/.vimbackups
 set directory=~/.vimbackups
 set autoread
 let g:ragtag_global_maps = 1 
-colorscheme ir_black
+set background=dark
+colorscheme solarized
 syntax on
 
 " Display line numbers and information ruler
 set number
 set ruler
+
+" OMG This is cool
+set wildchar=<Tab> wildmenu wildmode=full
 
 set cursorline
 
@@ -51,23 +54,13 @@ vmap <leader>a: <ESC>:Tabularize /:\zs<CR>
 " Teclas de atalho
 map <C-N> :bn<CR> " Próximo buffer
 map <C-W>w :w<CR> " Escreve no arquivo
-map cl ddO        " Change line
-
 
 map ,w :w!<cr>
-map ,, :bprevious<cr>
-map .. :bnext<cr>
-map ,v :vsplit<cr>
-map ,h :split<cr>
 map ,q :q<cr>
 map ,s /sad;lkfjasd;lfkjasd;lfkj<cr>
-map ,k <C-W>
 map ,/ <C-X><C-O>
 
-
-map <D-[> <ESC>:bprevious<cr>
-map <D-]> <ESC>:bnext<cr>
-map <D-Down> <ESC>:Bclose<cr>
+map <C-Down> <ESC>:Bclose<cr>
 
 map ,n :NERDTreeToggle<cr>
 
@@ -86,11 +79,12 @@ if has("autocmd")
   filetype plugin indent on
 
   " Default settings
-  set ts=2 sts=2 sw=2 expandtab
   " Styles depending on file type
   autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
-
+  autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType java setlocal ts=4 sw=4
+  autocmd FileType javacc setlocal ts=4 sw=4
   " Treat different file types as one we know. Example:
   " autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
   
@@ -113,61 +107,26 @@ function! <SID>StripTrailingWhitespaces()
   call cursor(l,c)
 endfunction
 
-
-
-
-map ,d :call SwitchErbHighlight()<cr>
-function SwitchErbHighlight ()
-  if !exists('g:erbhi')
-    let g:erbhi=1
- eruby   syn region erubySebas matchgroup=erubyDelimiter start="<%" end="%>" 
-    hi Delimiter guifg=#3d3d3d
-    hi erubySebas guifg=#3d3d3d
-  else
-    unlet g:erbhi
-    hi Delimiter guifg=#00a0a0
-    syntax off
-    syntax on
-  endif
-endfunction
-
-map ,f :CommandTFlush<cr>
-function SwitchHtmlHighlight ()
-  if !exists('g:erbhi')
-    let g:erbhi=1
-    syn region erubySebas start="<%" end="%>" 
-    hi Delimiter guifg=#3d3d3d
-    hi erubySebas guifg=#3d3d3d
-  else
-    unlet g:erbhi
-    hi Delimiter guifg=#00a0a0
-    syntax off
-    syntax on
-  endif
-endfunction
-
-
 " As seen on Vimcasts
 " Use window movement with Ctrl-h instead of Ctrl-w h and so on
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+" map <C-h> <C-w>h
+" map <C-j> <C-w>j
+" map <C-k> <C-w>k
+" map <C-l> <C-w>l
 
 " As seen on Vimcasts, with a few changes by me
 
-map <D-Right> gt
-map <D-Left> gT
-map <D-1> 1gt
-map <D-2> 2gt
-map <D-3> 3gt
-map <D-4> 4gt
-map <D-5> 5gt
-map <D-6> 6gt
-map <D-7> 7gt
-map <D-8> 8gt
-map <D-9> 9gt
-map <D-0> :tablast<CR>
+map GT gT
+map <leader>1 1gt
+map <leader>2 2gt
+map <leader>3 3gt
+map <leader>4 4gt
+map <leader>5 5gt
+map <leader>6 6gt
+map <leader>7 7gt
+map <leader>8 8gt
+map <leader>9 9gt
+map <leader>0 :tablast<CR>
 
 " I always type W instead of w
 cab W w
@@ -206,7 +165,7 @@ set statusline+=%-40f\                        " relative path
 set statusline+=%*                            "   "
 set statusline+=%=                            " seperate between right- and left-aligned
 set statusline+=%1*%y%*%*\                    " file type
-set statusline+=%10((%l/%L)%)\                " line and column
+set statusline+=%10((%l/%L/%c)%)\                " line and column
 set statusline+=%P                            " percentage of file
 " Show it!
 set laststatus=2
