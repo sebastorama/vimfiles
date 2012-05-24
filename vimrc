@@ -7,6 +7,8 @@ set wildmode=longest,list  "para completação do TAB igual ao bash
 set backupdir=~/.vimbackups
 set directory=~/.vimbackups
 set autoread
+set history=1000
+set shell=/bin/zsh
 let g:ragtag_global_maps = 1 
 set background=dark
 colorscheme solarized
@@ -44,19 +46,35 @@ map <leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
-
+"
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
+" resizing splits faster
+nnoremap = 3<C-W>>
+nnoremap - 3<C-W><
+
+
 nmap <leader>C :set cursorcolumn!<CR>
+
+map <leader>e :e ~/.vimrc<CR>
 
 " nmap <leader>a= <ESC>:Tabularize /=\zs<CR>
 " vmap <leader>a= <ESC>:Tabularize /=<CR>
 " nmap <leader>a: <ESC>:Tabularize /:\zs<CR>
 " vmap <leader>a: <ESC>:Tabularize /:\zs<CR>
+
+" Map auto complete of (, ", ', [
+inoremap ( ()<esc>i
+inoremap [ []<esc>i
+inoremap { {}<esc>i
+inoremap $4 {<esc>o}<esc>O
+inoremap '  ''<esc>i
+inoremap " ""<esc>i
+inoremap $t <><esc>i
 
 " Teclas de atalho
 map <C-N> :bnext<CR> " Próximo buffer
@@ -168,6 +186,22 @@ set statusline+=%10((%l/%L/%c)%)\                " line and column
 set statusline+=%P                            " percentage of file
 " Show it!
 set laststatus=2
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PROMOTE VARIABLE TO RSPEC LET
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! PromoteToLet()
+  :normal! dd
+  " :exec '?^\s*it\>'
+  :normal! P
+  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+  :normal ==
+endfunction
+:command! PromoteToLet :call PromoteToLet()
+:map <leader>p :PromoteToLet<cr>
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME CURRENT FILE
