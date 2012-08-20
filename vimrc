@@ -8,10 +8,10 @@ set backupdir=~/.vimbackups
 set directory=~/.vimbackups
 set autoread
 set history=1000
-set shell=/bin/zsh
+set shell=/bin/sh
 let g:ragtag_global_maps = 1 
-set background=dark
-colorscheme solarized
+set backspace=indent,eol,start
+color mustang
 syntax on
 
 " Display line numbers and information ruler
@@ -21,7 +21,7 @@ set ruler
 " OMG This is cool
 set wildchar=<Tab> wildmenu wildmode=full
 
-set cursorline
+set nocursorline
 
 " Navigate through buffers without vim whinings on unsaved buffers
 set hidden
@@ -67,15 +67,6 @@ map <leader>e :e ~/.vimrc<CR>
 " nmap <leader>a: <ESC>:Tabularize /:\zs<CR>
 " vmap <leader>a: <ESC>:Tabularize /:\zs<CR>
 
-" Map auto complete of (, ", ', [
-inoremap ( ()<esc>i
-inoremap [ []<esc>i
-inoremap { {}<esc>i
-inoremap $4 {<esc>o}<esc>O
-inoremap '  ''<esc>i
-inoremap " ""<esc>i
-inoremap $t <><esc>i
-
 " Teclas de atalho
 map <C-N> :bnext<CR> " Próximo buffer
 map <C-P> :bprevious<CR> " Buffer anterior
@@ -85,7 +76,7 @@ map ,q :q<cr>
 map ,s /sad;lkfjasd;lfkjasd;lfkj<cr>
 map ,/ <C-X><C-O>
 
-map ,n :NERDTreeToggle<cr>
+map ,d :NERDTreeToggle<cr>
 
 map ,c :Bclose<cr>
 
@@ -160,7 +151,7 @@ nnoremap Y y$
 
 " I don't want the original snippmate snippets
 let g:snippets_dir='~/.vim/snippets'
-source ~/.vim/snippets/support_functions.vim
+" source ~/.vim/snippets/support_functions.vim
 " autocmd vimenter * call s:SetupSnippets()
 " function! s:SetupSnippets()
 "    "if we're in a rails env then read in the rails snippets
@@ -180,6 +171,9 @@ set statusline+=%<\                           " cut at start
 set statusline+=%2*[%n%H%M%R%W]%*\            " buffer number, and flags
 set statusline+=%-40f\                        " relative path
 set statusline+=%*                            "   "
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 set statusline+=%=                            " seperate between right- and left-aligned
 set statusline+=%1*%y%*%*\                    " file type
 set statusline+=%10((%l/%L/%c)%)\                " line and column

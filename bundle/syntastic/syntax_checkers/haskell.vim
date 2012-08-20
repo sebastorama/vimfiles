@@ -14,17 +14,29 @@ if exists("loaded_haskell_syntax_checker")
 endif
 let loaded_haskell_syntax_checker = 1
 
-"bail if the user doesnt have ghc installed
-if !executable("ghc")
+"bail if the user doesnt have ghc-mod installed
+if !executable("ghc-mod")
     finish
 endif
 
-" As this calls ghc, it can take a few seconds... maybe hlint or something
-" could do a good enough job?
-function! SyntaxCheckers_haskell_GetLocList()
-    let makeprg = 'ghc % -e :q'
-    let errorformat = '%-G\\s%#,%f:%l:%c:%m,%E%f:%l:%c:,%Z%m,'
+if !exists('g:syntastic_haskell_checker_args')
+    let g:syntastic_haskell_checker_args = '--hlintOpt="--language=XmlSyntax"'
+endif
 
+function! SyntaxCheckers_haskell_GetLocList()
+    let ghcmod = 'ghc-mod ' . g:syntastic_haskell_checker_args
+    let makeprg =
+          \ "{ ".
+          \ ghcmod . " check ". shellescape(expand('%')) . "; " .
+          \ ghcmod . " lint " . shellescape(expand('%')) . ";" .
+          \ " }"
+    let errorformat = '%-G\\s%#,%f:%l:%c:%trror: %m,%f:%l:%c:%tarning: %m,'.
+                \ '%f:%l:%c: %trror: %m,%f:%l:%c: %tarning: %m,%f:%l:%c:%m,'.
+                \ '%E%f:%l:%c:,%Z%m,'
 
     return SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat })
+endfunction
+
+function! SyntaxCheckers_lhaskell_GetLocList()
+    return SyntaxCheckers_haskell_GetLocList()
 endfunction
