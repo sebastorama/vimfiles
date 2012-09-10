@@ -21,22 +21,34 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-module CommandT
-  class Stub
-    @@load_error = ['command-t.vim could not load the C extension',
-                    'Please see INSTALLATION and TROUBLE-SHOOTING in the help',
-                    'For more information type:    :help command-t']
+require 'spec_helper'
+require 'ostruct'
+require 'command-t/scanner/buffer_scanner'
 
-    [:flush, :show_buffer_finder, :show_file_finder, :show_tag_finder].each do |method|
-      define_method(method.to_sym) { warn *@@load_error }
+module VIM
+  class Buffer; end
+end
+
+describe CommandT::BufferScanner do
+  def buffer name
+    b = OpenStruct.new
+    b.name = name
+    b
+  end
+
+  before do
+    @paths = %w(bar/abc bar/xyz baz bing foo/alpha/t1 foo/alpha/t2 foo/beta)
+    @scanner = CommandT::BufferScanner.new
+    stub(@scanner).relative_path_under_working_directory(is_a(String)) { |arg| arg }
+    stub(::VIM::Buffer).count { 7 }
+    (0..6).each do |n|
+      stub(::VIM::Buffer)[n].returns(buffer @paths[n])
     end
+  end
 
-  private
-
-    def warn *msg
-      ::VIM::command 'echohl WarningMsg'
-      msg.each { |m| ::VIM::command "echo '#{m}'" }
-      ::VIM::command 'echohl none'
+  describe 'paths method' do
+    it 'returns a list of regular files' do
+      @scanner.paths.should =~ @paths
     end
-  end # class Stub
-end # module CommandT
+  end
+end

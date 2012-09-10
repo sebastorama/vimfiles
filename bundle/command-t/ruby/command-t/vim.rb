@@ -1,4 +1,4 @@
-# Copyright 2010-2011 Wincent Colaiuta. All rights reserved.
+# Copyright 2010-2012 Wincent Colaiuta. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -21,22 +21,39 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+require 'command-t/vim/screen'
+require 'command-t/vim/window'
+
 module CommandT
-  class Stub
-    @@load_error = ['command-t.vim could not load the C extension',
-                    'Please see INSTALLATION and TROUBLE-SHOOTING in the help',
-                    'For more information type:    :help command-t']
-
-    [:flush, :show_buffer_finder, :show_file_finder, :show_tag_finder].each do |method|
-      define_method(method.to_sym) { warn *@@load_error }
+  module VIM
+    def self.has_syntax?
+      ::VIM::evaluate('has("syntax")').to_i != 0
     end
 
-  private
-
-    def warn *msg
-      ::VIM::command 'echohl WarningMsg'
-      msg.each { |m| ::VIM::command "echo '#{m}'" }
-      ::VIM::command 'echohl none'
+    def self.exists? str
+      ::VIM::evaluate(%{exists("#{str}")}).to_i != 0
     end
-  end # class Stub
+
+    def self.has_conceal?
+      ::VIM::evaluate('has("conceal")').to_i != 0
+    end
+
+    def self.pwd
+      ::VIM::evaluate 'getcwd()'
+    end
+
+    # Execute cmd, capturing the output into a variable and returning it.
+    def self.capture cmd
+      ::VIM::command 'silent redir => g:command_t_captured_output'
+      ::VIM::command cmd
+      ::VIM::command 'silent redir END'
+      ::VIM::evaluate 'g:command_t_captured_output'
+    end
+
+    # Escape a string for safe inclusion in a Vim single-quoted string
+    # (single quotes escaped by doubling, everything else is literal)
+    def self.escape_for_single_quotes str
+      str.gsub "'", "''"
+    end
+  end # module VIM
 end # module CommandT
