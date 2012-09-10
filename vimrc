@@ -86,6 +86,7 @@ if has("autocmd")
   autocmd FileType scss setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType coffee setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType java setlocal ts=4 sw=4
   autocmd FileType javacc setlocal ts=4 sw=4
   " Treat different file types as one we know. Example:
