@@ -9,7 +9,6 @@ set directory=~/.vimbackups
 set autoread
 set history=1000
 set shell=/bin/sh
-let g:ragtag_global_maps = 1 
 set backspace=indent,eol,start
 color mustang
 syntax on
@@ -37,7 +36,7 @@ set vb
 set nofoldenable
 
 " Load pathogen
-call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
 
 " As seen on Vimcasts, expand path for the current file
 let mapleader=','
@@ -60,16 +59,9 @@ nnoremap - 3<C-W><
 
 nmap <leader>C :set cursorcolumn!<CR>
 
-map <leader>e :e ~/.vimrc<CR>
-
-" nmap <leader>a= <ESC>:Tabularize /=\zs<CR>
-" vmap <leader>a= <ESC>:Tabularize /=<CR>
-" nmap <leader>a: <ESC>:Tabularize /:\zs<CR>
-" vmap <leader>a: <ESC>:Tabularize /:\zs<CR>
-
-" Teclas de atalho
-map <C-N> :bnext<CR> " Próximo buffer
-map <C-P> :bprevious<CR> " Buffer anterior
+" Next/Previous Buffer
+map <C-N> :bnext<CR>
+map <C-P> :bprevious<CR>
 
 map ,w :w<cr>
 map ,q :q<cr>
@@ -81,10 +73,6 @@ map ,d :NERDTreeToggle<cr>
 map ,c :Bclose<cr>
 
 setlocal modifiable
-
-" Expand Rails-specific commands
-" map <leader>is :RSintegrationtest 
-" map <leader>c :Rcontroller
 
 " As seen on Vimcasts
 if has("autocmd")
@@ -103,7 +91,8 @@ if has("autocmd")
   " autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
   
   " Automatically remove whitespaces while saving files
-  autocmd BufWritePre *.snippet,*.yml,*.rb,*.html,*.css,*.erb,*.haml :call <SID>StripTrailingWhitespaces()
+  " autocmd BufWritePre *.c,*.cpp,*.c++*.java,*.snippet,*.yml,*.rb,*.html,*.css,*.erb,*.haml :call <SID>StripTrailingWhitespaces()
+  autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 endif
 
 
@@ -121,15 +110,8 @@ function! <SID>StripTrailingWhitespaces()
   call cursor(l,c)
 endfunction
 
-" As seen on Vimcasts
-" Use window movement with Ctrl-h instead of Ctrl-w h and so on
-" map <C-h> <C-w>h
-" map <C-j> <C-w>j
-" map <C-k> <C-w>k
-" map <C-l> <C-w>l
 
-" As seen on Vimcasts, with a few changes by me
-
+" Easier tab navigation
 map GT gT
 map <leader>1 1gt
 map <leader>2 2gt
