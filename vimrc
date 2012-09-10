@@ -2,7 +2,7 @@ set autoindent
 set t_Co=256
 set mouse=a
 set guifont="Monaco:h13"
-set linespace=2 
+set linespace=2
 set wildmode=longest,list  "para completação do TAB igual ao bash
 set backupdir=~/.vimbackups
 set directory=~/.vimbackups
@@ -83,13 +83,14 @@ if has("autocmd")
   " Default settings
   " Styles depending on file type
   autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType scss setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType java setlocal ts=4 sw=4
   autocmd FileType javacc setlocal ts=4 sw=4
   " Treat different file types as one we know. Example:
   " autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
-  
+
   " Automatically remove whitespaces while saving files
   " autocmd BufWritePre *.c,*.cpp,*.c++*.java,*.snippet,*.yml,*.rb,*.html,*.css,*.erb,*.haml :call <SID>StripTrailingWhitespaces()
   autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
@@ -147,7 +148,7 @@ let g:snippets_dir='~/.vim/snippets'
 "    call ExtractSnips("~/.vim/snippets/html", "php")
 " endfunction
 
-"Adding a statusline 
+"Adding a statusline
 set statusline=
 set statusline+=%<\                           " cut at start
 set statusline+=%2*[%n%H%M%R%W]%*\            " buffer number, and flags
