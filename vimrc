@@ -1,3 +1,6 @@
+" Load pathogen
+call pathogen#infect()
+
 set autoindent
 set t_Co=256
 set mouse=a
@@ -10,7 +13,9 @@ set autoread
 set history=1000
 set shell=/bin/sh
 set backspace=indent,eol,start
-color mustang
+set bg=dark
+let g:solarized_termcolors=256
+color solarized
 syntax on
 
 " Display line numbers and information ruler
@@ -20,7 +25,7 @@ set ruler
 " OMG This is cool
 set wildchar=<Tab> wildmenu wildmode=full
 
-set nocursorline
+set cursorline
 
 " Navigate through buffers without vim whinings on unsaved buffers
 set hidden
@@ -34,9 +39,6 @@ set vb
 
 " No folding! I hate folding!
 set nofoldenable
-
-" Load pathogen
-call pathogen#infect()
 
 " As seen on Vimcasts, expand path for the current file
 let mapleader=','
