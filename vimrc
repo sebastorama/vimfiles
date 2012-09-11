@@ -65,7 +65,7 @@ map <C-P> :bprevious<CR>
 
 map ,w :w<cr>
 map ,q :q<cr>
-map ,s /sad;lkfjasd;lfkjasd;lfkj<cr>
+map ,s :nohl<cr>
 map ,/ <C-X><C-O>
 
 map ,d :NERDTreeToggle<cr>
