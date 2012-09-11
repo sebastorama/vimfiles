@@ -13,8 +13,6 @@ set autoread
 set history=1000
 set shell=/bin/sh
 set backspace=indent,eol,start
-set bg=dark
-let g:solarized_termcolors=256
 color solarized
 syntax on
 
