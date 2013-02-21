@@ -7,14 +7,22 @@ set mouse=a
 set guifont="Monaco:h13"
 set linespace=2
 set wildmode=longest,list  "para completação do TAB igual ao bash
-set backupdir=~/.vimbackups
+
+set nobackup
+set noswapfile
+set autoread
+
 set directory=~/.vimbackups
 set autoread
 set history=1000
 set shell=/bin/sh
 set backspace=indent,eol,start
-color solarized
+color ir_black
 syntax on
+
+highlight ColorColumn ctermbg=0
+set colorcolumn=80
+
 
 " Display line numbers and information ruler
 set number
@@ -74,7 +82,10 @@ map ,c :Bclose<cr>
 
 setlocal modifiable
 
+" Default identation 2 spaces
+setlocal ts=2 sts=2 sw=2 expandtab
 " As seen on Vimcasts
+" If it's a known type of file, configure properly
 if has("autocmd")
   " File type detection
   filetype on
@@ -83,6 +94,7 @@ if has("autocmd")
   " Default settings
   " Styles depending on file type
   autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType scss setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
   autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab
@@ -91,6 +103,7 @@ if has("autocmd")
   autocmd FileType javacc setlocal ts=4 sw=4
   " Treat different file types as one we know. Example:
   " autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
+  autocmd BufNewFile,BufRead *.erb setfiletype eruby
 
   " Automatically remove whitespaces while saving files
   " autocmd BufWritePre *.c,*.cpp,*.c++*.java,*.snippet,*.yml,*.rb,*.html,*.css,*.erb,*.haml :call <SID>StripTrailingWhitespaces()
