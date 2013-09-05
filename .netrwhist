@@ -1,6 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/Users/sebastorama/titn/chef_repo/.git/modules'
 let g:netrw_dirhist_2='/Users/sebastorama/titn/vagrant'
 let g:netrw_dirhist_3='/Users/sebastorama/titn/chef_repo/.git'
 let g:netrw_dirhist_4='/Users/sebastorama/todo'
+let g:netrw_dirhist_5='/Users/sebastorama/Downloads/Perceptron/src/perceptronAND'
+let g:netrw_dirhist_6='/Users/sebastorama/titn/titn_deploy/titn/.git'

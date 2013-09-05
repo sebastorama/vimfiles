@@ -17,12 +17,19 @@ set autoread
 set history=1000
 set shell=/bin/sh
 set backspace=indent,eol,start
-color ir_black
+set bg=dark
+color solarized
 syntax on
 
 highlight ColorColumn ctermbg=0
 set colorcolumn=80
 
+" Vundle config + scripts
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'jnwhiteh/vim-golang'
 
 " Display line numbers and information ruler
 set number
