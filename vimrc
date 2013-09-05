@@ -10,7 +10,10 @@ set wildmode=longest,list  "para completação do TAB igual ao bash
 
 set nobackup
 set noswapfile
+set nocompatible
 set autoread
+filetype off
+filetype plugin indent on
 
 set directory=~/.vimbackups
 set autoread
@@ -94,10 +97,6 @@ setlocal ts=2 sts=2 sw=2 expandtab
 " As seen on Vimcasts
 " If it's a known type of file, configure properly
 if has("autocmd")
-  " File type detection
-  filetype on
-  filetype plugin indent on
-
   " Default settings
   " Styles depending on file type
   autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
