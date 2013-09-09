@@ -175,7 +175,6 @@ set statusline+=%2*[%n%H%M%R%W]%*\            " buffer number, and flags
 set statusline+=%-40f\                        " relative path
 set statusline+=%*                            "   "
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 set statusline+=%=                            " seperate between right- and left-aligned
 set statusline+=%1*%y%*%*\                    " file type
