@@ -33,6 +33,7 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'jnwhiteh/vim-golang'
+Bundle 'tpope/vim-surround'
 
 " Display line numbers and information ruler
 set number
