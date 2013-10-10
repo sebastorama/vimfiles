@@ -1,8 +1,5 @@
-set gfn=Monaco:h12
 set showtabline=2
 set guioptions=egmrt
-
-set transparency=0
 
 set lines=50
 set columns=175

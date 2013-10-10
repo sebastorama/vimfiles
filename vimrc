@@ -4,7 +4,6 @@ call pathogen#infect()
 set autoindent
 set t_Co=16
 set mouse=a
-set guifont="Monaco:h13"
 set linespace=2
 set wildmode=longest,list  "para completação do TAB igual ao bash
 
@@ -20,11 +19,10 @@ set autoread
 set history=1000
 set shell=/bin/sh
 set backspace=indent,eol,start
-set bg=light
-color solarized
+set bg=dark
+colorscheme solarized
 syntax on
 
-highlight ColorColumn ctermbg=7
 set colorcolumn=80
 
 " Vundle config + scripts
@@ -34,6 +32,8 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-fugitive'
+
 
 " Display line numbers and information ruler
 set number
