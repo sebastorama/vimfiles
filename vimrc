@@ -1,6 +1,20 @@
-" Load pathogen
-call pathogen#infect()
 
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails'
+Plugin 'wincent/command-t'
+
+
+
+call vundle#end()
+filetype plugin indent on
+syntax on
 set autoindent
 set t_Co=16
 set mouse=a
@@ -9,30 +23,24 @@ set wildmode=longest,list  "para completação do TAB igual ao bash
 
 set nobackup
 set noswapfile
-set nocompatible
 set autoread
-filetype off
-filetype plugin indent on
 
 set directory=~/.vimbackups
 set autoread
 set history=1000
 set shell=/bin/sh
 set backspace=indent,eol,start
-set bg=dark
+set bg=light
 colorscheme solarized
-syntax on
 
 set colorcolumn=80
 
-" Vundle config + scripts
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
+" call vundle#rc()
+"
+" Bundle 'gmarik/vundle'
+" Bundle 'jnwhiteh/vim-golang'
+" Bundle 'tpope/vim-surround'
+" Bundle 'tpope/vim-fugitive'
 
 
 " Display line numbers and information ruler

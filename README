@@ -1,3 +1,11 @@
-My vimfiles. 
+vimfiles.
 My .vimrc is big and a lot confuse. The major part of the config is copied&pasted from other users.
 Feel free to do the same :D
+
+Instructions:
+
+1 - git clone https://github.com/sebastorama/vimfiles.git ~/.vim
+2 - ln -s ~/.vim/vimrc ~/.vimrc
+3 - Open vim and call "PluginInstall"
+4 - Compile the command-t extension ( see *command-t-compile* https://github.com/wincent/Command-T )
+5 - You'll be good to go (probably...)
